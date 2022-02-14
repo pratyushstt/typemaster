@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TypeMaster</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <!-- Bootstrap ICONS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+        <!-- Fa Fa ICONS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!--My CSS-->
+        <link rel="stylesheet" href="style.css">
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap">
+
+    </head>
+    <body onload="showInstruction();" style="background-color: #abcabc;" oncontextmenu="return false;"><!-- oncontextmenu to block right click-->
+
+        <div class="conatiner py-4 ps-4" style="background-color: #242424;">
+            <h1 class="title">Type Master</h1>
+        </div>        
+
+        <div class="container mx-auto py-2 mb-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card" style="min-height:400px;">
+                        <div class="card-body">
+                            <p>
+                                <span id="span1" class="text-success fw-bold"></span>
+                                <span id="span2">Lorem ipsum dolor sit amet. Qui autem veniam et ipsum dolorem quo praesentium pariatur id consequuntur inventore rem minima esse eum debitis iure. Vel minus tempora et vitae magni aut iusto enim aut libero laboriosam aut nulla quisquam et nihil animi. Aut Quis odio eum illum minima ea galisum ut enim maxime. Et consequatur eaque ut dicta nobis in similique rerum aut quia minima quo voluptas alias. Non repellendus ipsa sed omnis sapiente non autem expedita et placeat eveniet. In earum velit est enim quia non quia unde ut optio quia. Est repellat fuga ut voluptas obcaecati At voluptatem quod sed iure molestias in enim perferendis At quam nisi. Id aliquid eveniet nam sint velit ut illo officia. Cum iste veniam et quidem dolorem ex cupiditate similique. Est eveniet distinctio et temporibus quam est quae illo eum tempora earum rem doloremque repellat. Vel autem amet et natus galisum ad pariatur?</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <textarea class="form-control py-3" id="content" onfocus="starttimer()" onblur="stoptimer()" placeholder="Start typing here..." style="min-height:400px;"></textarea>
+                    <div class="row">
+                        <div class="col-6">
+                            <p>Words typed: <span id="words"></span></p>
+                            <p>Correctly typed: <span id="cwords"></span></p>
+                        </div>
+                        <div class="col-6">
+                            <p>
+                                Time Taken: 
+                                <span id="min"></span> : 
+                                <span id="sec"></span>
+                            </p>
+                            <p>Letters typed: <span id="ltrs"></span></p>
+                        </div>   
+                        <div class="col-10 text-center mx-auto">
+                            <button onclick="result()" id="btnShowRes" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#resultModal">View your result</button>
+                        </div>             
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Result-->
+        <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="resultModalLabel">Your Result...</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Words Typed Correctly: <span id="words2"></span></p>
+                    <p>Letters Count: <span id="ltrs2"></span></p>
+                    <p>Time Taken: <span id="titk"></span></p>
+                    Your Speed: <span id="speed"></span><em>&nbsp;Words per minute</em>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="location.reload();">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <button class="d-none" id="instsrBtn" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#instrModal">View your result</button>
+        <!-- Modal Instructions-->
+        <div class="modal fade" id="instrModal" tabindex="-1" aria-labelledby="instrModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="instrModalLabel">Instructions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><em>This web page is designed to calculate the typing speed of the user.</em></p>
+                    <ul>
+                        <li>User Needs to type the content give in the box to the area provided.</li>
+                        <li>For every letters typed correctly, the color of the letter will be changed.</li>
+                        <li>For every word typed correctly, the count of correctly typed words will be increased.</li>
+                        <li class="fw-bolder">Speed will be calculated on the correctly typed words.</li>
+                    </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <!-- My JS -->
+        <script type="text/javascript" src="script.js"></script>
+        <!-- To block control key -->
+        <script type="text/javascript">
+            // document.onkeydown = function(e) {
+            //     if (e.ctrlKey) {
+            //         return false;
+            //     } else {
+            //         return true;
+            //     }
+            // };
+        </script>
+
+    </body>
+</html>
